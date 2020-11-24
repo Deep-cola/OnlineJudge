@@ -16,7 +16,12 @@ import java.util.Comparator;
 public class Solution452 {
 
     /**
-     *
+     * 随机射出一支箭，假设它可以引爆气球, 那么它可以活动的范围最大就是这个气球的直径坐标范围
+     * 1.按照气球结束坐标的大小从小到大排序
+     * 2.第一支射出的箭最远只能到 pos[0][1]
+     * 3.这个时候所有开始坐标小于这个位置的都可以被引爆, 不需要再增加箭
+     * 4.当有一个气球开始坐标大于上一支箭的坐标时, 需要再射出一支, 而最好的射出位置就是新气球的结束坐标
+     * 5.遍历数组进行比较即可
      */
     public int findMinArrowShots(int[][] points) {
         if (points == null || points.length == 0 ) return 0;

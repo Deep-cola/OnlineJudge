@@ -22,7 +22,7 @@ public class BST2DoubleLinkedList {
     /**
      * 二叉搜索树转有序双向链表
      */
-    public TreeNode Convert(TreeNode root) {
+    public TreeNode convert(TreeNode root) {
         // 空树
         if (root == null) return null;
         // 进行转换
