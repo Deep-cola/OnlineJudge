@@ -9,7 +9,7 @@ package NewCode;
 public class DeleteDuplication {
 
     /**
-     * definition for singly-linked list;
+     * Definition for singly-linked list;
      */
     class ListNode {
         int val;
