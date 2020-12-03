@@ -26,7 +26,7 @@ public class Solution206 {
      * 1.判断链表是否为空
      * 2.prev 标记 cur 的前驱结点
      * 3.curNext 指向原链表 cur 的 next 结点
-     * 4.循环反转链表知道 cur = null
+     * 4.遍历反转链表直到 cur = null
      * 5.此时, prev 就是新的头结点
      */
     public ListNode reverseList(ListNode head) {
@@ -36,7 +36,7 @@ public class Solution206 {
         ListNode prev = null;
         while (cur != null) {
             // 指向未反转前的 cur.next,
-            // 在 cur 发生反转后, next域 会发生改变,所以需要一个结点来标记它原本的 next 结点
+            // 在 cur 发生反转后, next 会发生改变,所以需要一个结点来标记它原本的 next 结点
             ListNode curNext = cur.next;
             // 反转
             cur.next = prev;
@@ -45,7 +45,6 @@ public class Solution206 {
             cur = curNext;
         }
         // 此时 cur 结点为 null, prev 就是原本链表的最后一个结点, 反转链表的头结点
-        head = prev;
-        return head;
+        return prev;
     }
 }
