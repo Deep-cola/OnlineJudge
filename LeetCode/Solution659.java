@@ -20,6 +20,16 @@ public class Solution659 {
 
     /**
      * 贪心算法
+     * 1. 定义两个 map: countMap 用于保存剩余的元素以及对应数量, endMap 用于保存以某个元素结尾的子序列数量
+     * 2.遍历 nums 统计元素和数量
+     * 3.再次遍历 nums 判断是否能进行分割称为连续子序列
+     *      1.如果当前元素 num 有剩余(countMap.getOrDefault(num, 0) > 0), 就判断是否可以加入某个子序列
+     *      2.判断是否右以 前一个元素 num-1 结尾的子序列:
+     *          (1)存在: 加入这个子序列。需要 num 数量 -1; 以 num-1 结尾序列数量 -1; 以 num 结尾子序列数量 +1
+     *          (2)不存在: 判断后面两位连续元素是否还有剩余:
+     *                  如果没有: 就说明不能分割成连续子序列, 返回 false 即可;
+     *                  如果有: 可以分割，相应的 num num+1 num-1 剩余数量 -1; 以 num+2 结尾子序列数量 +1
+     * 4.遍历完数组都可以分割成子序列, 那就说明为 true
      */
     public boolean isPossible(int[] nums) {
         // 统计保存数组中的元素以及对应数量
@@ -68,6 +78,8 @@ public class Solution659 {
 
 
     public static void main(String[] args) {
-
+        Solution659 solution = new Solution659();
+        int[] nums = {1,2,3,3,4,4,5,5};
+        System.out.println(solution.isPossible(nums));
     }
 }
