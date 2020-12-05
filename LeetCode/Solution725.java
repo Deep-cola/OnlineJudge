@@ -1,7 +1,5 @@
 package LeetCode;
 
-import javax.swing.*;
-
 /**
  * @description: 分割链表
  * 给定一个头结点为 root 的链表, 编写一个函数以将链表分隔为 k 个连续的部分。

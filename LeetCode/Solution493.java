@@ -42,7 +42,7 @@ public class Solution493 {
             while (right <= end && (long)nums[left] > 2 * (long)nums[right]) {
                 right++;
             }
-            result += right - mid - 1;
+            result += right - (mid + 1);
             left++;
         }
         // 归并
