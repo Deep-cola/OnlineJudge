@@ -23,7 +23,7 @@ public class Solution83 {
      * 1.新创建一个头结点用于连接新链表结点
      * 2.遍历链表查找不重复结点连接到新链表, 重复结点只连接一个
      */
-    public ListNode deleteDuplicates(ListNode head) {
+    /*public ListNode deleteDuplicates(ListNode head) {
         if (head == null) return null;
         ListNode newHead = new ListNode(0);
         ListNode temp = newHead;
@@ -42,6 +42,21 @@ public class Solution83 {
             cur = cur.next;
         }
         return newHead.next;
+    }*/
+
+    /**
+     * 相等就跳过
+     */
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode cur = head;
+        while (cur != null && cur.next != null) {
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
+            }else {
+                cur = cur.next;
+            }
+        }
+        return head;
     }
 
 }

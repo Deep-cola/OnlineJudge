@@ -28,7 +28,7 @@ public class Solution82 {
      *                      没有重复元素就存放到新链表中
      * 3.注意: 最后需要把新链表尾结点的 next 置空
      */
-    public ListNode deleteDuplicates(ListNode head) {
+    /*public ListNode deleteDuplicates(ListNode head) {
         if (head == null) return null;
         ListNode cur = head;
         ListNode dummyHead = new ListNode(0);
@@ -50,5 +50,28 @@ public class Solution82 {
         // 尾结点需要置为 null, 不然会连接原链表后面的所有结点, 尤其是尾部全是重复节点
         temp.next = null;
         return dummyHead.next;
+    }*/
+
+    /**
+     * 递归
+     */
+    public ListNode deleteDuplicates(ListNode head) {
+        // 终止条件
+        if (head == null || head.next == null) return head;
+        // 判断当前结点和下一节点值是否相等
+        if (head.val == head.next.val) {
+            // 相等 -> 跳过所有相等节点
+            while (head.next != null && head.val == head.next.val) {
+                head = head.next;
+            }
+            // 判断最后一个重复节点的下一节点(多跳一次)
+            return deleteDuplicates(head.next);
+        }else {
+            // 递归判断下一节点
+            head.next = deleteDuplicates(head.next);
+            return head;
+        }
     }
+
+
 }

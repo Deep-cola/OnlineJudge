@@ -31,7 +31,7 @@ public class Solution21 {
      * 4.将另一个链表全部插入到新链表后面
      * 5.新链表头结点是自己定义的, 所以下一个才是合并的头结点
      */
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    /*public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if (l1 == null && l2 == null) return null;
         if (l1 == null) return l2;
         if (l2 == null) return l1;
@@ -52,11 +52,25 @@ public class Solution21 {
             }
         }
         // 此时, 有一个链表被遍历完, 将另一个链表加在新链表后面即可
-        if (l1 != null) {
-            temp.next = l1;
-        }else {
-            temp.next = l2;
-        }
+        temp.next = (l1 == null) ? l2 : l1;
         return newHead.next;
+    }*/
+
+    /**
+     * 递归
+     */
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }else if (l2 == null) {
+            return l1;
+        }else if (l1.val < l2.val) {
+            l1.next = mergeTwoLists(l1.next, l2);
+            return l1;
+        }else {
+            l2.next = mergeTwoLists(l1, l2.next);
+            return l2;
+        }
     }
+
 }
