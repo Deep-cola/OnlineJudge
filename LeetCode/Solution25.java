@@ -26,9 +26,18 @@ public class Solution25 {
     }
 
     /**
-     *
+     * 1.定义 dummyHead 用于连接, 不然第一组无法连接
+     * 2.使用 prev 指向反转部分的前一个结点,tail 每次从待反转部分的前一个开始 k 个一组进行遍历分割, 如果剩余的长度不足以组就直接返回;
+     * 3.保存 tailNext=tail.next 用于反转以后的连接;
+     * 4.调用方法反转链表并得到反转以后的头尾结点;
+     * 5.将反转以后的链表连接在原链表之中:
+     *              prev.next = head;
+     *              tail.next = tailNext;
+     * 6.初始化下次的值:
+     *              prev = tail;
+     *              head = tail.next;
      */
-    public ListNode reverseKGroup(ListNode head, int k) {
+    /*public ListNode reverseKGroup(ListNode head, int k) {
         ListNode dummyHead = new ListNode(0);
         dummyHead.next = head;
         ListNode prev = dummyHead;
@@ -49,6 +58,7 @@ public class Solution25 {
             head = result[0];
             tail = result[1];
             // 连接
+            // 反转以后原来的尾成为了头连接在 prev 后面, 原来的头成为了尾连接在 tailNext 前面
             prev.next = head;
             tail.next = tailNext;
             // 下次开始初始值
@@ -56,20 +66,53 @@ public class Solution25 {
             head = tail.next;
         }
         return dummyHead.next;
-    }
+    }*/
 
     /**
-     * 反转给定的一段链表
+     * 反转给定的一段链表, 将反转以后的头尾返回.
      */
     public ListNode[] reverseList(ListNode head, ListNode tail) {
+        ListNode tailNext = tail.next;
         ListNode cur = head;
         ListNode prev = null;
-        while (cur != tail) {
+        while (cur != tailNext) {
             ListNode curNext  = cur.next;
             cur.next = prev;
             prev = cur;
             cur = curNext;
         }
         return new ListNode[]{tail, head};
+    }
+
+    /**
+     *
+     */
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode cur = head;
+        int length = 0;// 链表的长度
+        while (cur != null) {
+            cur = cur.next;
+            length++;
+        }
+        cur = head;
+        ListNode prev = dummyHead;// 反转部分前一个节点
+        ListNode curNext = null;// 房前反转的下一个节点
+        ListNode curPrev = prev;
+        // 分成 k 组
+        for (int i = 0; i < length / k; i++) {
+            for (int j = 0; j < k-1; j++) {
+                // 反转
+                curNext = cur.next;
+                cur.next = curPrev;
+                curPrev = cur;
+                cur = curNext;
+            }
+            prev.next = cur;
+            prev = cur;
+            cur = prev.next;
+        }
+        return dummyHead.next;
     }
 }
