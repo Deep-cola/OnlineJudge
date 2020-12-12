@@ -26,7 +26,7 @@ public class Solution24 {
      *      返回值: 将每一次交换后的头结点返回, 需要连接在上一层次的后面
      *      单次过程: 相当于交换两个节点, 然后将交换后的头结点返回, 另一个节点连接递归后的返回值(后面链表头结点)
      */
-    public ListNode swapPairs(ListNode head) {
+    /*public ListNode swapPairs(ListNode head) {
         // 0/1 个节点不用交换
         if (head == null || head.next == null) return head;
         // 交换两个节点->相当于反转
@@ -36,5 +36,25 @@ public class Solution24 {
         prev.next = swapPairs(head.next);
         head.next = prev;
         return head;
+    }*/
+
+    /**
+     * 迭代
+     */
+    public ListNode swapPairs(ListNode head) {
+        if (head == null) return null;
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode prev = dummyHead;
+        ListNode cur = head;
+        while (prev.next != null && prev.next.next != null) {
+            prev.next = cur.next;
+            cur.next = prev.next.next;
+            prev.next.next = cur;
+            prev = cur;
+            cur = cur.next;
+        }
+        return dummyHead.next;
     }
+
 }
