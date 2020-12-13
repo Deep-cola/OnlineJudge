@@ -71,7 +71,7 @@ public class Solution25 {
     /**
      * 反转给定的一段链表, 将反转以后的头尾返回.
      */
-    public ListNode[] reverseList(ListNode head, ListNode tail) {
+    /*public ListNode[] reverseList(ListNode head, ListNode tail) {
         ListNode tailNext = tail.next;
         ListNode cur = head;
         ListNode prev = null;
@@ -82,12 +82,15 @@ public class Solution25 {
             cur = curNext;
         }
         return new ListNode[]{tail, head};
-    }
+    }*/
 
     /**
-     *
+     * 1.计算链表长度
+     * 2.将链表分成 k 组，每组反转
+     * 3.反转完成继续分组重复上一步
      */
     public ListNode reverseKGroup(ListNode head, int k) {
+        if (head == null) return null;
         ListNode dummyHead = new ListNode(0);
         dummyHead.next = head;
         ListNode cur = head;
@@ -97,19 +100,19 @@ public class Solution25 {
             length++;
         }
         cur = head;
-        ListNode prev = dummyHead;// 反转部分前一个节点
-        ListNode curNext = null;// 房前反转的下一个节点
-        ListNode curPrev = prev;
+        ListNode prev = dummyHead;
+        ListNode curNext = null;
         // 分成 k 组
+        // 每组进行反转: 遍历组内的每个节点, 将其插入到 prev 和 head 之间实现反转
         for (int i = 0; i < length / k; i++) {
             for (int j = 0; j < k-1; j++) {
                 // 反转
                 curNext = cur.next;
-                cur.next = curPrev;
-                curPrev = cur;
-                cur = curNext;
+                cur.next = curNext.next;
+                curNext.next = prev.next;
+                prev.next = curNext;
             }
-            prev.next = cur;
+            // 下一次反转初始值
             prev = cur;
             cur = prev.next;
         }

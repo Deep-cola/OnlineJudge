@@ -43,6 +43,9 @@ public class Solution1367 {
      *          1.去判断 head 和 root.left 或者 root.right 是否相等 ? -> 这样的话就会跳过这一层的 root, 相当于中间产生了断层, 不连续
      *          2.直接返回 false?  ->  那下面有列表的话...
      *          需要做的当然是使用 当前 root 和原来的链表头结点 head 进行判等, 这个时候一个递归就无法获取原来的 head
+     */
+
+    /**
      * 1.遍历每一个节点
      */
     public boolean isSubPath(ListNode head, TreeNode root) {

@@ -3,6 +3,7 @@ package LeetCode;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @description: 存在重复元素
@@ -34,12 +35,26 @@ public class Solution217 {
     /**
      * set 自带去重, 装入 set 看长度是否减少
      */
+//    public boolean containsDuplicate(int[] nums) {
+//        HashSet<Integer> set = new HashSet<>();
+//        for (int i : nums) {
+//            set.add(i);
+//        }
+//        return nums.length > set.size();
+//    }
+
+
+    /**
+     * 添加失败就说明重复
+     */
     public boolean containsDuplicate(int[] nums) {
-        HashSet<Integer> set = new HashSet<>();
-        for (int i : nums) {
-            set.add(i);
+        Set<Integer> set = new HashSet<>();
+        for (int i: nums) {
+            if (!set.add(i)) {
+                return true;
+            }
         }
-        return nums.length > set.size();
+        return false;
     }
 
     public static void main(String[] args) {

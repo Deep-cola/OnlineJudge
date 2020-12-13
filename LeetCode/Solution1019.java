@@ -1,5 +1,6 @@
 package LeetCode;
 
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -65,7 +66,7 @@ public class Solution1019 {
      *      3.第二步之后栈顶元素(如果存在)必然是后面第一个大于当前元素的值，即下一个更大节点： 栈空说明遍历过的元素自己最大
      *      4.每次循环进行完将当前元素压栈, 进行下一次判断
      */
-    public int[] nextLargerNodes(ListNode head) {
+    /*public int[] nextLargerNodes(ListNode head) {
         if (head == null) return null;
         List<Integer> list = new ArrayList<>();
         // 取出节点值
@@ -89,6 +90,28 @@ public class Solution1019 {
         }
         return result;
     }
+*/
 
-
+    public int[] nextLargerNodes(ListNode head) {
+        List<Integer> list = new ArrayList<>();
+        Stack<Integer> stack = new Stack<>();
+        while (head != null) {
+            while (!stack.isEmpty() && head.val > list.get(stack.peek())) {
+                list.set(stack.pop(), head.val);
+            }
+            // 装入下标
+            stack.push(list.size());
+            list.add(head.val);
+            head = head.next;
+        }
+        for (int i: stack) {
+            list.set(i, 0);
+        }
+        int[] result = new int[list.size()];
+        int index = 0;
+        for (int i: list) {
+            result[index++] = i;
+        }
+        return result;
+    }
 }

@@ -26,13 +26,11 @@ public class Solution1290 {
 
     /**
      * 1.使用 StringBuffer 将遍历链表的值连接起来,
-     * 2.使用Integer.parseInt() 转换为十进制
+     * 2.使用 Integer.parseInt() 转换为十进制
      */
     /*public int getDecimalValue(ListNode head) {
         if (head == null) return 0;
         ListNode cur = head;
-        int result = 0;// 求和
-        int count = 0;// 计算链表的结点位置
         StringBuffer sb = new StringBuffer();
         while (cur != null) {
             sb.append(cur.val);
