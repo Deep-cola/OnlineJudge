@@ -1,5 +1,7 @@
 package NewCode;
 
+import java.util.Scanner;
+
 /**
  * @description: 饥饿的小易
  * 小易总是感觉饥饿，所以作为章鱼的小易经常出去寻找贝壳吃。最开始小易在一个初始位置x_0。
@@ -22,6 +24,51 @@ public class Hungry {
      *
      */
     public static void main(String[] args) {
-
+        Scanner scan = new Scanner(System.in);
+        while (scan.hasNext()) {
+            int pos = scan.nextInt();
+            int i = 1;
+            for (; i < 10_0000; i++) {
+                pos = 4 * pos + 3;
+                if (pos % 1000000007 == 0) {
+                    System.out.println(pos);
+                    break;
+                }
+            }
+            // 求出最小次数
+            System.out.println(i);
+            System.out.println((i/3)*2+(i%3));
+        }
     }
+
+    /**
+     * 对于 f(x)=2x+1:
+     *          4x+3 是  f(f(x))     -> 2次
+     *          8x+7 是  f(f(f(x)))  -> 3次
+     * 需要求出最小次数, 所以先考虑 8x + 7
+     * 对于 num = x / 3;
+     *          余数为 0 -> num
+     *          余数为 1 -> num-1+2
+     *          余数为 2 -> num+1
+     */
+    /*public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        while (scan.hasNext()) {
+            int pos = scan.nextInt();
+            int i = 1;
+            for (; i < 10_0000; i++) {
+                pos = 2*pos + 1;
+                if (pos % 1000000007 == 0) {
+                    break;
+                }
+            }
+            System.out.println((i+2)/3);
+            // 求出最小次数
+            if (i % 3 == 0) {
+                System.out.println(i/3);
+            }else {
+                System.out.println(i/3+1);
+            }
+        }
+    }*/
 }
