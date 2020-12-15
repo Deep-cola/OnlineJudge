@@ -9,8 +9,6 @@ import java.util.Scanner;
  * @time: 2020/12/7 0:35
  */
 public class AddLongNum {
-
-
     /**
      * 使用 BigDecimal 类
      */

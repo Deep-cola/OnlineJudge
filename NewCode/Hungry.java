@@ -20,26 +20,38 @@ public class Hungry {
      * 对于 4x + 3 和 8x + 7: 有
      *          4(8x+7)+3 = 8(4x+3)+7  ->  对于一个可行方案。顺序并不影响
      *          4(4(4x+3)+3)+3 = 8(8x+7)+7  ->  需要求出最小次数, 所以 3 个 4x + 3 可以转换为 2 个 8x + 7
-     *
+     * 要求次数最少, 所以尽量转换成 8x+7
+     * 那么一个最优策略: 4x+3 就 执行 0/1/2 次, 然后计算 8x+7 次数即可.
      *
      */
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         while (scan.hasNext()) {
-            int pos = scan.nextInt();
-            int i = 1;
-            for (; i < 10_0000; i++) {
-                pos = 4 * pos + 3;
-                if (pos % 1000000007 == 0) {
-                    System.out.println(pos);
-                    break;
+            long x = scan.nextLong();
+            long target = 1000000007;// 贝壳
+            long num = 100000;// 最多次数
+            // 4x+7 三次的值
+            long[] f = new long[3];
+            f[0] = x;// 0
+            f[1] = (4 * f[0] + 3) % target;// 1
+            f[2] = (4 * f[1] + 3) % target;// 2
+            long minStep = num;
+            for (int i = 0; i < 3; i++) {
+                long step = i;
+                long pos = f[i];
+                while (pos != 0 && step < minStep) {
+                    pos = (8 * pos + 7) % target;
+                    step++;
                 }
+                minStep = Math.min(minStep, step);
             }
-            // 求出最小次数
-            System.out.println(i);
-            System.out.println((i/3)*2+(i%3));
+            if (minStep < num) {
+                System.out.println(minStep);
+            }else {
+                System.out.println(-1);
+            }
         }
-    }
+    }*/
 
     /**
      * 对于 f(x)=2x+1:
@@ -51,24 +63,19 @@ public class Hungry {
      *          余数为 1 -> num-1+2
      *          余数为 2 -> num+1
      */
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         while (scan.hasNext()) {
-            int pos = scan.nextInt();
-            int i = 1;
-            for (; i < 10_0000; i++) {
-                pos = 2*pos + 1;
-                if (pos % 1000000007 == 0) {
-                    break;
-                }
+            long pos = scan.nextLong();
+            int count = 0;
+            long target = 1000000007;
+            while (pos != 0 && count < 300000) {
+                pos = (2 * pos + 1) % target;
+                count++;
             }
-            System.out.println((i+2)/3);
+            int result = (count % 3 == 0) ? count / 3 : count / 3 + 1;
             // 求出最小次数
-            if (i % 3 == 0) {
-                System.out.println(i/3);
-            }else {
-                System.out.println(i/3+1);
-            }
+            System.out.println(result < 100000 ? result : -1);
         }
-    }*/
+    }
 }
