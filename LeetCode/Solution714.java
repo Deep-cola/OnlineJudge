@@ -21,36 +21,53 @@ package LeetCode;
 public class Solution714 {
 
     /**
-     * 1.寻找买股票的位置: 应该是当前开始股票价格第一个小于后一天的位置(开始递增)
-     * 2.寻找卖股票的位置: 应该是买完以后股票价格第一个大于后一天的位置(开始递减)
-     * 3.除此之外, 每一次交易的利润都应该大于手续费
+     * 贪心算法:
+     * 1.由于存在手续费, 可以看作买入股票的价格是 prices[i]+fee;
+     * 2.判断:
+     *      (1)如果价格小于买入的股票, 那就不用管继续向后;
+     *      (2)如果价格不小于买入的股票, 那就当作是卖出来更新利润; 同时，由于后面可能还有更高的价格, 所以这次也看作是没有手续费的买入。
      */
     public int maxProfit(int[] prices, int fee) {
-        int count = 0;// 交易次数
-        int profit = 0;// 利润
-        int index = 1;
-        // 第一个递增点
-        while (index < prices.length) {
-            while (index < prices.length && prices[index-1] >= prices[index]) {
-                index++;
-            }
-            // 假定买入——从 index-1 开始递增
-            int start = prices[index-1];
-            // 从 index-1 开始递减
-            while (index < prices.length && prices[index-1] < prices[index] && prices[index-1] - start <= fee) {
-                index++;
-            }
-            if (prices[index-1] - start > fee) {
-                count++;
-                profit += prices[index-1] - start;
+        int buy = prices[0] + fee;
+        int profit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] + fee < buy) {
+                // 价格更低, 更适合买入
+                buy = prices[i] + fee;
+            }else if (prices[i] > buy) {
+                // 假定卖出, 更新利润和买入价格
+                profit += prices[i] - buy;
+                buy = prices[i];
             }
         }
-        return profit - fee * count;
+        return profit;
     }
+
+    /**
+     * 动态规划: 每天只有两种状态, 手上有 1 支股票或者 0 支
+     * 定义 dp[i][0]表示第 i 天有 0 支股票; dp[i][1] 表示第 i 天有 1 支股票 -> 那么前一天可能是  dp[i-1][0] 或 dp[i-1][1]
+     * 转移方程: dp[i][0] = max{dp[i-1][0], dp[i-1][1] + prices[i] - fee};
+     *         dp[i][1] = max{dp[i-1][1], dp[i-1][0] - prices[i]};
+     * 最后: dp[n-1][0] 利润一定大于 dp[n-1][1]
+     */
+    /*public int maxProfit(int[] prices, int fee) {
+        int n = prices.length;
+        int[][] dp = new int[n][2];
+        int sell = 0;
+        int buy = -prices[0];
+        for (int i = 1; i < n; i++) {
+            sell = Math.max(sell, buy + prices[i] - fee);
+            buy = Math.max(buy, sell - prices[i]);
+        }
+        return sell;
+    }*/
+
 
     public static void main(String[] args) {
         Solution714 solution = new Solution714();
-        int[] prices = {1,3,2,8,4,9};
+//        int[] prices = {9,8,7,1,2};
+//        int fee = 3;
+        int[] prices = {1,3,5,8,4,9};
         int fee = 2;
         System.out.println(solution.maxProfit(prices, fee));
     }
