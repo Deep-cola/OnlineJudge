@@ -26,7 +26,7 @@ public class Solution94 {
 
     /**
      * 中序遍历
-     * 使用非覅贵 + 返回值实现
+     * 使用非递归 + 返回值实现
      */
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -36,7 +36,7 @@ public class Solution94 {
         while (cur != null || !stack.isEmpty()) {
             while (cur != null) {
                 stack.push(cur);
-                cur =cur.left;
+                cur = cur.left;
             }
             cur = stack.pop();
             result.add(cur.val);

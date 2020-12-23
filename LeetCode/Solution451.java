@@ -1,9 +1,6 @@
 package LeetCode;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * @description: 根据字符出现频率排序
@@ -57,4 +54,5 @@ public class Solution451 {
         String s = "raaeaedere";
         System.out.println(solution.frequencySort(s));
     }
+
 }

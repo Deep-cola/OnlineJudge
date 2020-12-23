@@ -1,7 +1,5 @@
 package LeetCode;
 
-import org.omg.CORBA.MARSHAL;
-
 /**
  * @description: 使用最小花费爬楼梯
  * 数组的每个索引作为一个阶梯，第 i个阶梯对应着一个非负数的体力花费值 cost[i](索引从0开始)。
