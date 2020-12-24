@@ -1,4 +1,4 @@
-package NewCode;
+package newcode;
 
 /**
  * @description: 二叉树的镜像

@@ -1,4 +1,4 @@
-package NewCode;
+package newcode;
 
 /**
  * @description: 约瑟夫问题Ⅱ

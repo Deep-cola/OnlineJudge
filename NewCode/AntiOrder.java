@@ -1,4 +1,4 @@
-package NewCode;
+package newcode;
 
 /**
  * @description: 数组中的逆序对

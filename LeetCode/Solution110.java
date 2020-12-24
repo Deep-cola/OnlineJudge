@@ -1,4 +1,4 @@
-package LeetCode;
+package leetcode;
 
 /**
  * @description: 平衡二叉树

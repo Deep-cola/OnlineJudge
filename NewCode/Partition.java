@@ -1,4 +1,4 @@
-package NewCode;
+package newcode;
 
 /**
  * @description: 分割链表

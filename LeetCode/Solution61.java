@@ -1,4 +1,4 @@
-package LeetCode;
+package leetcode;
 
 /**
  * @description: 旋转链表

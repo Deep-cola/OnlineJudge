@@ -1,4 +1,4 @@
-package LeetCode;
+package leetcode;
 
 /**
  * @description: 将数组分成相等的三部分

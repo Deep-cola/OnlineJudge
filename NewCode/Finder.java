@@ -1,6 +1,4 @@
-package NewCode;
-
-import java.util.Scanner;
+package newcode;
 
 /**
  * @description: 寻找第 k 大

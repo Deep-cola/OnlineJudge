@@ -1,6 +1,4 @@
-package LeetCode;
-
-import java.util.Stack;
+package leetcode;
 
 /**
  * @description: 取出重复字母

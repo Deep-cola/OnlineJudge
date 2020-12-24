@@ -1,4 +1,4 @@
-package LeetCode;
+package leetcode;
 
 /**
  * @description: 合并两个有序链表

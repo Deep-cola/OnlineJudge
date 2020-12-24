@@ -1,4 +1,4 @@
-package LeetCode;
+package leetcode;
 
 /**
  * @description: 移除链表元素

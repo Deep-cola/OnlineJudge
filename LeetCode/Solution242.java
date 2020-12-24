@@ -1,6 +1,4 @@
-package LeetCode;
-
-import java.util.Arrays;
+package leetcode;
 
 /**
  * @description: 有效的字母异位词

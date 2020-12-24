@@ -1,4 +1,4 @@
-package NewCode;
+package newcode;
 
 /**
  * @description: 删除排序链表中的重复结点

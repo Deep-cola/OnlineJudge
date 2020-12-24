@@ -1,7 +1,6 @@
-package LeetCode;
+package leetcode;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
 /**
  * @description: 任务调度器

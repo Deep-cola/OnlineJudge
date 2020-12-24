@@ -1,6 +1,4 @@
-package LeetCode;
-
-import java.util.Stack;
+package leetcode;
 
 /**
  * @description: 比较含有退格的字符串

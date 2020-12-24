@@ -1,7 +1,4 @@
-package LeetCode;
-
-import java.util.HashSet;
-import java.util.Set;
+package leetcode;
 
 /**
  * @description: 移除重复结点

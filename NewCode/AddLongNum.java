@@ -1,4 +1,4 @@
-package NewCode;
+package newcode;
 
 import java.math.BigDecimal;
 import java.util.Scanner;

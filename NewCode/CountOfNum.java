@@ -1,9 +1,5 @@
-package NewCode;
+package newcode;
 
-import com.sun.deploy.util.SyncAccess;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**

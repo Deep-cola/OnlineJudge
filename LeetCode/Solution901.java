@@ -1,6 +1,5 @@
-package LeetCode;
+package leetcode;
 
-import javax.swing.plaf.synth.SynthTabbedPaneUI;
 import java.util.Stack;
 
 /**

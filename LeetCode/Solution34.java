@@ -1,8 +1,6 @@
-package LeetCode;
+package leetcode;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @description: 在排序数组中查找元素的第一个和最后一个位置

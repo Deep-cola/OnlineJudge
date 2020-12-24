@@ -1,7 +1,6 @@
-package LeetCode;
+package leetcode;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @description: 单词规律

@@ -1,8 +1,7 @@
-package LeetCode;
+package leetcode;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 /**
  * @description: 二叉树的完全性检验

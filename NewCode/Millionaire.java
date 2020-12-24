@@ -1,4 +1,4 @@
-package NewCode;
+package newcode;
 
 /**
  * @description: 百万富翁问题

@@ -1,6 +1,4 @@
-package NewCode;
-
-import sun.security.krb5.SCDynamicStoreConfig;
+package newcode;
 
 import java.util.Scanner;
 

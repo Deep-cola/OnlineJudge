@@ -1,8 +1,4 @@
-package LeetCode;
-
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.PriorityQueue;
+package leetcode;
 
 /**
  * @description: 合并 k 个有序链表

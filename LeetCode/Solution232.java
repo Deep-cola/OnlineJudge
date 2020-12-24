@@ -1,6 +1,4 @@
-package LeetCode;
-
-import org.omg.CORBA.INTERNAL;
+package leetcode;
 
 import java.util.Stack;
 

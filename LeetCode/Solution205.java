@@ -1,7 +1,6 @@
-package LeetCode;
+package leetcode;
 
 import java.util.HashMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @description: 同构字符串

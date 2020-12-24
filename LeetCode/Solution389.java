@@ -1,8 +1,4 @@
-package LeetCode;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+package leetcode;
 
 /**
  * @description: 找不同

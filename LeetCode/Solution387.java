@@ -1,6 +1,4 @@
-package LeetCode;
-
-import java.util.HashMap;
+package leetcode;
 
 /**
  * @description: 字符串中的第一个唯一字符

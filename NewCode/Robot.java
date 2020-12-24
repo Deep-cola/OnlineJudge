@@ -1,6 +1,4 @@
-package NewCode;
-
-import java.util.Scanner;
+package newcode;
 
 /**
  * @description: 机器人走方格

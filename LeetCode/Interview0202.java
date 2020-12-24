@@ -1,6 +1,4 @@
-package LeetCode;
-
-import java.util.Stack;
+package leetcode;
 
 /**
  * @description: 返回倒数第 k 个结点

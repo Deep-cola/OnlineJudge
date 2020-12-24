@@ -1,7 +1,4 @@
-package LeetCode;
-
-import java.util.LinkedList;
-import java.util.Queue;
+package leetcode;
 
 /**
  * @description: 完全二叉树结点个数
