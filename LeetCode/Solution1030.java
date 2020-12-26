@@ -1,6 +1,8 @@
 package leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @description: 距离顺序排列矩阵单元格
@@ -29,10 +31,43 @@ import java.util.Arrays;
  * @time: 2020/12/25 15:08
  */
 public class Solution1030 {
+
+    /**
+     * 桶排序
+     */
+    public int[][] allCellsDistOrder(int R, int C, int r0, int c0) {
+        // 行距离和列距离都最大时, 距离取得最大值
+        int maxDistance = Math.max(r0, R - 1 - r0) + Math.max(c0, C - 1 - c0);
+        // 建桶
+        List<List<int[]>> bucket = new ArrayList<>();
+        for (int i = 0; i <= maxDistance; i++) {
+            bucket.add(new ArrayList<>());
+        }
+        // 装桶
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                // 计算距离
+                int distance = Math.abs(i - r0) + Math.abs(j - c0);;
+                // 装进相应的桶
+                bucket.get(distance).add(new int[]{i, j});
+            }
+        }
+        // 取值
+        int[][] result = new int[R * C][2];
+        int index = 0;
+        for (int i = 0; i <= maxDistance; i++) {
+            for (int[] e: bucket.get(i)) {
+                result[index++] = e;
+            }
+        }
+        return result;
+    }
+
+
     /**
      * 直接排序
      */
-    public int[][] allCellsDistOrder(int R, int C, int r0, int c0) {
+    /*public int[][] allCellsDistOrder(int R, int C, int r0, int c0) {
         // 统计所有数
         int[][] result = new int[R * C][2];
         int index = 0;
@@ -46,7 +81,7 @@ public class Solution1030 {
             return (Math.abs(o1[0] - r0) + Math.abs(o1[1] - c0))- (Math.abs(o2[0] - r0) + Math.abs(o2[1] - c0));
         });
         return result;
-    }
+    }*/
 
     public static void main(String[] args) {
         Solution1030 solution = new Solution1030();

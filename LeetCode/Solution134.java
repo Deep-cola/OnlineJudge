@@ -38,10 +38,31 @@ package leetcode;
  * @time: 2020/12/25 16:07
  */
 public class Solution134 {
+
+    /**
+     * 使用图
+     */
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int spare = 0;// 剩余油量
+        int minSpare = Integer.MAX_VALUE;
+        int minIndex = 0;// 最低点下标
+        // 计算最低点下标
+        for (int i = 0; i < gas.length; i++) {
+            spare += gas[i] - cost[i];
+            if (spare < minSpare) {
+                minSpare = spare;
+                minIndex = i;;
+            }
+        }
+        // 最终的油量是否大于 0
+        return spare < 0 ? -1 : (minIndex + 1) % gas.length;
+    }
+
+
     /**
      * 模拟过程
      */
-    public int canCompleteCircuit(int[] gas, int[] cost) {
+    /*public int canCompleteCircuit(int[] gas, int[] cost) {
         int n = gas.length;
         for (int i = 0; i < n; i++) {
             // 查找起点
@@ -66,7 +87,7 @@ public class Solution134 {
             }
         }
         return -1;
-    }
+    }*/
 
     public static void main(String[] args) {
         Solution134 solution = new Solution134();

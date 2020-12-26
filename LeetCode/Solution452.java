@@ -52,4 +52,9 @@ public class Solution452 {
     }
 
 
+    public static void main(String[] args) {
+        Solution452 solution = new Solution452();
+        int[][] points = {{-2147483646,-2147483645},{2147483646,2147483647}};
+        System.out.println(solution.findMinArrowShots(points));
+    }
 }
