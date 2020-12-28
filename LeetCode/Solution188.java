@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.awt.image.Kernel;
+
 /**
  * @description: 买卖股票的最佳时机Ⅳ
  * 给定一个整数数组 prices ，它的第 i 个元素 prices[i] 是一支给定的股票在第 i 天的价格。
@@ -22,6 +24,35 @@ package leetcode;
 public class Solution188 {
 
     public int maxProfit(int k, int[] prices) {
-        
+        if (prices.length == 0) {
+            return 0;
+        }
+        // 买入股票和卖出股票
+        int[] buy = new int[k + 1];
+        int[] sell = new int[k + 1];
+        // 当 k 大于一半 -> 没必要
+        k = Math.min(k, prices.length / 2);
+        // 第一天买入股票 / 第一天卖出股票
+        buy[0] = -prices[0];
+        sell[0] = 0;
+        // 默认值
+        for (int i = 1; i <= k; i++) {
+            buy[i] = sell[i] = Integer.MIN_VALUE / 2;
+        }
+        // 交易
+        for (int i = 1; i < prices.length; i++) {
+            // 买入股票
+            buy[0] = Math.max(buy[0], sell[0] - prices[i]);
+            for (int j = 1; j <= k; j++) {
+                buy[j] = Math.max(buy[j], sell[j] - prices[i]);
+                sell[j] = Math.max(sell[j], buy[j - 1] + prices[i]);
+            }
+        }
+        // 最大利润
+        int profit = 0;
+        for (int i = 0; i <= k; i++) {
+            profit = Math.max(profit, sell[i]);
+        }
+        return profit;
     }
 }
