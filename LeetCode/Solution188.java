@@ -23,6 +23,18 @@ import java.awt.image.Kernel;
  */
 public class Solution188 {
 
+    /**
+     * 动态规划:
+     *      1.buy[i][j] 表示第 i 天进行 j 笔交易, 手上恰好有一只股票时的最大利润
+     *      2.sell[i][j] 表示第 i 天第 i 天进行 j 笔交易, 手上没有股票时的最大利润
+     *      3.对于 buy[i][j], 可以是前一天手上已经有一支股票, 或者今天买进的股票:
+     *              buy[i][j] = Math.max(buy[i - 1][j], sell[i - 1][j] - prices[i])
+     *      4.对于 sell[i][j], 可以是前一天手上没有股票, 或者前一天有一支在今天卖出的股票:
+     *              sell[i][j] = Math.max(sell[i - 1][j], buy[i - 1][j - 1] + prices[i])
+     * 由于均从前一天某种状态下转移而来, 可以考虑一维数组
+     *              buy[j] = Math.max(buy[j], sell[j] - prices[i])
+     *              sell[j] = Math.max(sell[j], buy[j - 1] + prices[i])
+     */
     public int maxProfit(int k, int[] prices) {
         if (prices.length == 0) {
             return 0;
@@ -35,14 +47,15 @@ public class Solution188 {
         // 第一天买入股票 / 第一天卖出股票
         buy[0] = -prices[0];
         sell[0] = 0;
-        // 默认值
+        // 默认值 - 由于之后的没有进行过任何交易, 设置为非法值
         for (int i = 1; i <= k; i++) {
             buy[i] = sell[i] = Integer.MIN_VALUE / 2;
         }
         // 交易
         for (int i = 1; i < prices.length; i++) {
-            // 买入股票
+            // 当前进行第一次买入股票
             buy[0] = Math.max(buy[0], sell[0] - prices[i]);
+            // 最多 k 次交易
             for (int j = 1; j <= k; j++) {
                 buy[j] = Math.max(buy[j], sell[j] - prices[i]);
                 sell[j] = Math.max(sell[j], buy[j - 1] + prices[i]);
