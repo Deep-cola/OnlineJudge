@@ -15,11 +15,28 @@ import java.util.PriorityQueue;
  */
 public class Solution1046 {
 
+    public int lastStoneWeight(int[] stones) {
+        // 建立大根堆
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((o1, o2) -> o2-o1);
+        // 石头进堆 -> 维护大根堆
+        for (int stone: stones) {
+            priorityQueue.offer(stone);
+        }
+        // 石头碰撞
+        while (priorityQueue.size() > 1) {
+            priorityQueue.offer(priorityQueue.poll() - priorityQueue.poll());
+        }
+        // 还有一块石头
+        if (!priorityQueue.isEmpty()) {
+            return priorityQueue.poll();
+        }
+        return 0;
+    }
     /**
      * 从中取出两块最重的石头, 只需要维护一个大根堆, 两次弹出堆顶元素，
      * 然后将两块石头碰撞之后的新石头继续放入，维护大根堆，直至剩下一块石头或者堆为空
      */
-    public int lastStoneWeight(int[] stones) {
+    /*public int lastStoneWeight(int[] stones) {
         // 建立大根堆
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(new Comparator<Integer>() {
             @Override
@@ -40,7 +57,7 @@ public class Solution1046 {
             return priorityQueue.poll();
         }
         return 0;
-    }
+    }*/
 
     public static void main(String[] args) {
         Solution1046 solution = new Solution1046();
