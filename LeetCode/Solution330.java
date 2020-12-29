@@ -25,7 +25,32 @@ package leetcode;
  */
 public class Solution330 {
 
+    /**
+     * 贪心算法: 每次找到最小的一个未被数组覆盖的 x, 添加 x 使得覆盖区间变到 2x,然后继续寻找下一个
+     * 核心: 对于正整数 x, 在区间[1, x - 1]上的所有数都被覆盖, 添加 x 后, 区间[1, 2x - 1]的所有数被覆盖
+     *     由于必须有 1,对于 x(初始为 1)进行判断:
+     *          如果数组中当前位置 index 对应的 nums[index] <= x, 就将 nums[index] + x;
+     *          反之, 由于在这之前 [1, x-1] 都已经被覆盖, 只需将 x 添加到数组,
+     *          -> 当 index 超过数组下界时,同样的需要添加 x
+     */
     public int minPatches(int[] nums, int n) {
-
+        int index = 0;// 遍历下标
+        int patch = 0;// 添加的个数
+        long x = 1;
+        // 检索表示区间范围是否满足要求
+        while (x <= n) {
+            if (index < nums.length && nums[index] <= x) {
+                // x 被覆盖
+                // 不需要添加 -> 最大表示区间[1, x + nums[index] - 1]
+                x += nums[index];
+                index++;
+            }else {
+                // x 没有被覆盖
+                // 添加 x -> 最大表示区间[1, 2x - 1]
+                x *= 2;
+                patch++;
+            }
+        }
+        return patch;
     }
 }
