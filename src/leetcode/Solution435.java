@@ -25,29 +25,25 @@ import java.util.Arrays;
  */
 public class Solution435 {
 
+    /**
+     * 贪心算法:
+     *      1.按照结束坐标升序排序
+     *      2.寻找不重复的区间个数
+     */
     public int eraseOverlapIntervals(int[][] intervals) {
-        // 自定义排序
-        Arrays.sort(intervals, (o1, o2) -> {
-            if (o1[0] == o2[0]) {
-                return o1[1] - o2[1];
-            }else {
-                return o1[0] > o2[0] ? 1 : -1;
-            }
-        });
-        int count = 0;
-        boolean[] flag = new boolean[intervals.length];
-        Arrays.fill(flag, true);
+        if (intervals.length == 0) return 0;
+        // 自定义排序: 按照 end 升序排序
+        Arrays.sort(intervals, (o1, o2) -> o1[1] - o2[1]);
+        int count = 1;// 至少一个区间
+        int end  = intervals[0][1];
         for (int i = 1; i < intervals.length; i++) {
-            int index = i - 1;
-            while (!flag[index]) {
-                index--;
-            }
-            if (intervals[i][0] >= intervals[index][0] && intervals[i][0] < intervals[index][1] && flag[index]) {
+            // 区间不重复
+            if (intervals[i][0] >= end) {
                 count++;
-                flag[i] = false;
+                end = intervals[i][1];
             }
         }
-        return count;
+        return intervals.length - count;
     }
 
     public static void main(String[] args) {
