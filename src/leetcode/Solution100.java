@@ -32,7 +32,6 @@ public class Solution100 {
         // 只有一个为 null
         if (p == null || q == null) return false;
         // 都不是空树
-        if (p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)) return true;
-        return false;
+        return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 }

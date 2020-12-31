@@ -30,7 +30,7 @@ public class Solution435 {
      *      1.按照结束坐标升序排序
      *      2.寻找不重复的区间个数
      */
-    public int eraseOverlapIntervals(int[][] intervals) {
+    /*public int eraseOverlapIntervals(int[][] intervals) {
         if (intervals.length == 0) return 0;
         // 自定义排序: 按照 end 升序排序
         Arrays.sort(intervals, (o1, o2) -> o1[1] - o2[1]);
@@ -44,6 +44,27 @@ public class Solution435 {
             }
         }
         return intervals.length - count;
+    }*/
+
+
+    public int eraseOverlapIntervals(int[][] intervals) {
+        if (intervals.length == 0) return 0;
+        // 排序 -> 根据开始坐标
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        // 判断
+        int count = 0;// 删除区间数量
+        int end = intervals[0][1];
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] >= end) {
+                // 新区间
+                end = intervals[i][1];
+            }else {
+                // 区间重复 -> 保留较小的区间
+                count++;
+                end = Math.min(end, intervals[i][1]);
+            }
+        }
+        return count;
     }
 
     public static void main(String[] args) {
