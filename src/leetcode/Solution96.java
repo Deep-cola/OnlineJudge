@@ -27,7 +27,7 @@ public class Solution96 {
      *   F[j, i] = dp[i-1] * dp[j-i];————左子树[0, j-1], 右子树[j+1, i]的排列组合
      *   所以 dp[n] = Σ(i = 1, n) dp[i-1] * dp[n-i]
      */
-    /*public int numTrees(int n) {
+    public int numTrees(int n) {
         int[] dp = new int[n + 1];
         dp[0] = 1;
         for (int i = 1; i <= n; i++) {// 动规: 递推
@@ -36,18 +36,18 @@ public class Solution96 {
             }
         }
         return dp[n];
-    }*/
+    }
 
 
     /**
      * 组合数学:卡塔兰数
      *      C(0) = 1;     C(n+1) = 2(2n+1) / (n+2) * C(n)
      */
-    public int numTrees(int n) {
+   /*public int numTrees(int n) {
         long C = 1;
         for (int i = 0; i < n; i++) {
             C = C * 2 * (2 * i + 1) / (i + 2);
         }
         return (int) C;
-    }
+    }*/
 }

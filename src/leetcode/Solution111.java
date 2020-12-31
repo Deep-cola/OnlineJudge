@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @description: 二叉树的最下深度
  * 给定一个二叉树，找出其最小深度。
@@ -30,24 +33,59 @@ public class Solution111 {
     }
 
     /**
-     * 前提是: 在左右子树都有叶子结点的前提下
-     * 计算左子树和右子树各自的最小深度, 取最小值
+     * 层序遍历:
+     *      当某一节点左子树和右子树都为 null 时, 该节点为第一个叶子结点, 此时就是最小深度
      */
     public int minDepth(TreeNode root) {
         if (root == null) return 0;
-        if (root.left == null && root.right == null) return 1;
-        int left = minDepth(root.left) + 1;
-        int right = minDepth(root.right) + 1;
-        return Math.min(left, right);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        int Depth = 0;
+        while (!queue.isEmpty()) {
+            int count = queue.size();
+            Depth++;
+            while (count-- > 0) {
+                TreeNode temp = queue.poll();
+                if (temp.left == null && temp.right == null) {
+                    break;
+                }else {
+                    if (temp.left != null) queue.offer(temp.left);
+                    if (temp.right != null) queue.offer(temp.right);
+                }
+            }
+            if (count != -1) {
+                break;
+            }
+        }
+        return Depth;
     }
 
-    public int minDepth(TreeNode root, TreeNode node) {
-        if (node == null) return 0;
-        if (node.left == null && node.right == null) return 1;
-        int left = minDepth(root, node.left) + 1;
-        int right = minDepth(root, node.right) + 1;
-        if (root.left == null) return right;
-        if (root.right == null) return left;
-        return Math.min(left, right);
-    }
+    /**
+     * 深度优先策略
+     */
+    /*public int minDepth(TreeNode root) {
+        if (root == null) return 0;
+        if (root.left == null && root.right == null) return 1;
+        int min_depth = Integer.MAX_VALUE;
+        if (root.left != null) {
+            min_depth = Math.min(min_depth, minDepth(root.left));
+        }
+        if (root.right != null) {
+            min_depth = Math.min(min_depth, minDepth(root.right));
+        }
+        return min_depth + 1;
+    }*/
+
+
+    /*public int minDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }else if (root.left == null) {
+            return minDepth(root.right) + 1;
+        }else if (root.right == null) {
+            return minDepth(root.left) + 1;
+        }else {
+            return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+        }
+    }*/
 }
