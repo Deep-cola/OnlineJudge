@@ -45,7 +45,7 @@ public class Solution257 {
         binaryTreePaths(root, "", result);
         return result;
     }
-    // 递归求所有路径
+    // 递归求所有路径————通过参数传递实现回滚操作
     public void binaryTreePaths(TreeNode root, String path, List<String> result) {
         if (root == null) return;
         StringBuilder sb = new StringBuilder(path);// 前面的节点
@@ -60,4 +60,35 @@ public class Solution257 {
             binaryTreePaths(root.right, sb.toString(), result);
         }
     }
+
+    /**
+     * 广度优先搜索:
+     */
+    /*public List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        if (root == null) return result;
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        Queue<String> stringQueue = new LinkedList<>();
+        nodeQueue.offer(root);
+        stringQueue.offer(String.valueOf(root.val));
+        while (!nodeQueue.isEmpty()) {
+            TreeNode tempNode = nodeQueue.poll();
+            String path = stringQueue.poll();
+            if (tempNode.left == null && tempNode.right == null) {
+                // 叶子结点
+                result.add(path);
+            }else {
+                // 非叶子节点
+                if (tempNode.left != null) {
+                    nodeQueue.offer(tempNode.left);
+                    stringQueue.offer(path + "->" + tempNode.left.val);
+                }
+                if (tempNode.right != null) {
+                    nodeQueue.offer(tempNode.right);
+                    stringQueue.offer(path + "->" + tempNode.right.val);
+                }
+            }
+        }
+        return result;
+    }*/
 }
