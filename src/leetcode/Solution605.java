@@ -20,11 +20,47 @@ package leetcode;
  */
 public class Solution605 {
     /**
+     * 贪心算法:
+     *      假设在两个位置 i 和 j 已经种花, 同时两个位置中间均未种花
+     *          那么在[i+1, j-1]之间可以种花的数量为 (j-i-2) / 2
+     *      除此之外, 需要判断在第一朵花之前和最后一朵花之后可以种花的数量 或者都未种花的情乱
+     *          第一朵花之前: i / 2
+     *          最后一朵花之后: (flowerbed.length - prev -1) / 2
+     *          都未种花: (flowerbed.length + 1) / 2
+     */
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int count = 0;
+        int prev = - 1;// 记录前一个种花的位置
+        for (int i = 0; i < flowerbed.length; i++) {
+            if (flowerbed[i] == 1) {
+                if (prev < 0) {// 第一朵花之前
+                    count += i / 2;
+                }else {// 区间[prev, i]
+                    count += (i - prev - 2) / 2;
+                }
+                // 检验
+                if (count >= n) {
+                    return true;
+                }
+                // 区间后移
+                prev = i;
+            }
+        }
+        // 判断最后一朵花之后 和 均为种花的情况
+        if (prev < 0) {// 均为种花
+            count += (flowerbed.length + 1) / 2;
+        }else {// 最后一朵花之后
+            count += (flowerbed.length - prev - 1) / 2;
+        }
+        return count >= n;
+    }
+
+    /**
      * 跳格子:
      *      当当前位置 i 为 1, 由于原来保证的有规则, 所以可以种花的位置必然在 i+2， 去判断
      *      当当前位置 i 为 0, 由于碰到 1 跳两格, 所以前一格必定是 0,只需要判断下一格是否为 0 即可
      */
-    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+    /*public boolean canPlaceFlowers(int[] flowerbed, int n) {
         int count = 0;
         for (int i = 0; i < flowerbed.length;) {
             if (flowerbed[i] == 1) {// 种花 -> 去判断 i+2 是否为 0
@@ -37,7 +73,7 @@ public class Solution605 {
             }
         }
         return count >= n;
-    }
+    }*/
 
     /**
      * 模拟
