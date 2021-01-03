@@ -1,8 +1,6 @@
 package leetcode;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @description: 大餐计数
@@ -22,35 +20,54 @@ import java.util.Map;
  *
  * 提示：
  *
- *      1 <= deliciousness.length <= 105
- *      0 <= deliciousness[i] <= 220
+ *      1 <= deliciousness.length <= 10^5
+ *      0 <= deliciousness[i] <= 2^20
  * @author: Deepcola
  * @time: 2021/1/3 18:58
  */
 public class Solution5642 {
 
     /**
-     *
+     * 哈希表 + 预计算
      */
     public int countPairs(int[] deliciousness) {
-        HashMap<Double, Integer> map = new HashMap<>();
+        // 幂数组 -> 由于最大数为 2^20 -> 所以最多只能为 2^21
+        int[] targets = new int[22];
         // 存放幂
-        for (int i = 0; i < 22; i++) {
-            map.put(Math.pow(2, i), 0);
+        targets[0] = 1;
+        // 模
+        int mod = 1_000_000_007;
+        for (int i = 1; i < 22; i++) {
+            targets[i] = targets[i-1] << 1;
         }
-        Arrays.sort(deliciousness);
-        int result = 0;
+        // 存储遍历过的数
+        HashMap<Integer, Integer> map = new HashMap<>();
+        // 结果
+        long result = 0;
         for (int i = 0; i < deliciousness.length; i++) {
-            int j = i + 1;
-            double sum = deliciousness[i] + deliciousness[j];
-            if (map.containsKey(sum)) {
-                
+            int num = deliciousness[i];
+            for (int j = 0; j < 22; j++) {
+                // 大餐的另一个数
+                int target = targets[j] - num;
+                // 不合法
+                if (target < 0) {
+                    continue;
+                }
+                // 存在 -> 对于相同的数值, 每一道都是大餐
+                if (map.containsKey(target)) {
+                    result = (result + map.get(target)) % mod;
+                }
             }
+            // 遍历多的装进去
+            map.put(num, (map.getOrDefault(num, 0) + 1) % mod);
         }
-        return result;
+        return (int) (result % mod);
     }
 
 
+    /**
+     * 暴力: 超时
+     */
     /*public int countPairs(int[] deliciousness) {
         HashMap<Integer, Integer> map = new HashMap<>();
         int result = 0;
