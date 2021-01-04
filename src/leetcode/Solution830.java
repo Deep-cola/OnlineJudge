@@ -2,7 +2,6 @@ package leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,29 +34,49 @@ import java.util.List;
  * @time: 2021/1/5 0:01
  */
 public class Solution830 {
-
+    /**
+     * 一次遍历
+     */
     public List<List<Integer>> largeGroupPositions(String s) {
         List<List<Integer>> result = new ArrayList<>();
-        int[] count = new int[26];
-        // 数组计数
+        int start = 0;
         for (int i = 0; i < s.length(); i++) {
-            count[s.charAt(i) - 'a']++;
-        }
-        System.out.println(Arrays.toString(count));
-        int index = 0;
-        while (index < s.length()) {
-            char ch = s.charAt(index);
-            if (count[ch - 'a'] >= 3) {
-                List<Integer> list = new ArrayList<>();
-                list.add(index);
-                list.add(index + count[ch - 'a'] - 1);
-                result.add(list);
+            if (i == s.length() - 1 || s.charAt(i) != s.charAt(i + 1)) {
+                // 此时 i 是最后一个与前面字符同分组的 或者 是遍历至字符串结尾
+                if (i - start >= 2) {
+                    result.add(Arrays.asList(start, i));
+                }
+                start = i + 1;
             }
-            index = index + count[ch - 'a'] - 1;
         }
-        Collections.sort(result, (o1, o2) -> {
-            return o1.get(0) - o2.get(0);
-        });
         return result;
     }
+
+    /**
+     * 模拟
+     */
+    /*public List<List<Integer>> largeGroupPositions(String s) {
+        List<List<Integer>> result = new ArrayList<>();
+        int start = 0;
+        while (start < s.length()) {
+            int end = start;
+            // 查找连续相同的结尾字符
+            while (end < s.length() && s.charAt(end) == s.charAt(start)) {
+                end++;
+            }
+            // 长度不够
+            if (end - start < 3) {
+                start = end;
+                continue;
+            }else {
+                // 添加
+                List<Integer> list = new ArrayList<>();
+                list.add(start);
+                list.add(end - 1);
+                result.add(list);
+                start = end;
+            }
+        }
+        return result;
+    }*/
 }
