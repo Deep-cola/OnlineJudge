@@ -123,6 +123,7 @@ public class Solution399 {
             return parent[id];
         }
 
+        // 计算 queries
         public double isConnected(int id1, int id2) {
             int root1 = findRoot(id1);
             int root2 = findRoot(id2);
