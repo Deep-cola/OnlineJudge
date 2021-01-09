@@ -19,13 +19,37 @@ public class Partition {
         }
     }
 
+    public ListNode partition(ListNode pHead, int x) {
+        if (pHead == null) return null;
+        // 小于 x 结点构成的链表
+        ListNode beforeHead = new ListNode(0);
+        ListNode afterHead = new ListNode(0);
+        ListNode before = beforeHead;
+        ListNode after = afterHead;
+        while(pHead != null) {
+            if (pHead.val < x) {
+                before.next = pHead;
+                before = before.next;
+            }else {
+                after.next = pHead;
+                after = after.next;
+            }
+            pHead = pHead.next;
+        }
+        after.next = null;
+        before.next = afterHead.next;
+
+        return beforeHead.next;
+    }
+
+
     /**
      * 创建两个链表分别插入大于等于 x 和小于 x 的结点
      * 1.全部大于
      * 2.全部小于
      * 3.正常情况
      */
-    public ListNode partition(ListNode pHead, int x) {
+    /*public ListNode partition(ListNode pHead, int x) {
         if (pHead == null) return null;
         // 创建两个新链表新头结点以及遍历结点
         ListNode beforeHead = new ListNode(0);
@@ -52,7 +76,7 @@ public class Partition {
             after.next = null;
             return beforeHead.next;
         }
-    }
+    }*/
 
     /**
      * 定义分别存放小于 x 结点的 before 链表和其他的结点的 after 链表
