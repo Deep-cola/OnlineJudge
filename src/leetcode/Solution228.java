@@ -41,19 +41,20 @@ public class Solution228 {
 
     public List<String> summaryRanges(int[] nums) {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++) {
-            String str = "";
-            int length = 1;
-            while (i < nums.length && nums[i] + 1 < nums[i + 1]) {
-                length++;
+        for (int i = 0; i < nums.length;) {
+            StringBuilder sb = new StringBuilder();
+            int start = i;
+            i++;
+            while (i < nums.length && nums[i] - 1 == nums[i - 1]) {
                 i++;
             }
-            if (length == 1) {
-                str += nums[i];
+            int end = i - 1;
+            if (start == end) {
+                sb.append(nums[start]);
             }else {
-                str += nums[i - length + 1] + "->" + nums[i];
+                sb.append(nums[start] + "->" + nums[end]) ;
             }
-            list.add(str);
+            list.add(sb.toString());
         }
         return list;
     }
