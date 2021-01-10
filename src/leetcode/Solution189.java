@@ -67,10 +67,21 @@ public class Solution189 {
     /**
      * 环状翻转
      */
-    /*public void rotate(int[] nums, int k) {
+    public void rotate(int[] nums, int k) {
         k = k % nums.length;
-        for (int i = 0; i < nums.length; i++) {
-        
+        int count = 0;// 记录访问次数
+        for (int i = 0; count != nums.length; i++) {
+            int start = i;
+            int prev = nums[start];
+            do {
+                int next = (start + k) % nums.length;
+                int temp = nums[next];
+                nums[next] = prev;
+                // 更新下一次交换初始值
+                start = next;
+                prev = temp;
+                count++;
+            } while (start != i);// 回到原始位置停止
         }
-    }*/
+    }
 }

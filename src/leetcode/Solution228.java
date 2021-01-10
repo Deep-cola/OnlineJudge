@@ -52,7 +52,7 @@ public class Solution228 {
             if (start == end) {
                 sb.append(nums[start]);
             }else {
-                sb.append(nums[start] + "->" + nums[end]) ;
+                sb.append(nums[start]).append("->").append(nums[end]);
             }
             list.add(sb.toString());
         }
