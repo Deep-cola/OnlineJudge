@@ -39,6 +39,9 @@ import java.util.List;
  */
 public class Solution228 {
 
+    /**
+     * 一次遍历
+     */
     public List<String> summaryRanges(int[] nums) {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < nums.length;) {
