@@ -43,7 +43,7 @@ public class Solution188 {
         // 当 k 大于一半 -> 没必要
         k = Math.min(k, prices.length / 2);
         // 第一天买入股票 / 第一天卖出股票
-        buy[0] = -prices[0];
+        buy[0] = - prices[0];
         sell[0] = 0;
         // 默认值 - 由于之后的没有进行过任何交易, 设置为非法值
         for (int i = 1; i <= k; i++) {
