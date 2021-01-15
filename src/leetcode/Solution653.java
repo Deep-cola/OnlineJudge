@@ -52,7 +52,7 @@ public class Solution653 {
 
     public boolean findTarget(TreeNode root, int target, Set<Integer> set) {
         if (root == null) return false;
-        // 集合中包含 另一个数,使得两数之和为 target
+        // 集合中包含 另一个数,使得两数之 target
         if (set.contains(target - root.val)) {
             return true;
         }

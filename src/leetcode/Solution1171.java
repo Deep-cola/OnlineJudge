@@ -26,7 +26,7 @@ public class Solution1171 {
     /**
      * HashMap 两次遍历
      * 1.定义一个傀儡头结点
-     * 2.一次遍历: 使用 map 装入 节点和 sum ——节点 node;  当有两个 sum 相等时, 说明这里个之间的所有结点和为 0, 记住最后一个位置即可, 二次遍历进行删除
+     * 2.一次遍历: 使用 map 装入 节点和 sum ——节点 node;  当有两个 sum 相等时, 说明这里个之间的所有结点 0, 记住最后一个位置即可, 二次遍历进行删除
      * 3.二次遍历: 重新计算节点和 sum , 进行一次计算需要将下个节点置为 map 中等于 sum 的 next 节点 -> node.next = map.get(sum).next;
      *      1.如果 sum 一次遍历没重复, 此时 map.get(sum).next 就是正常进行;
      *      2.如果 sum 一次遍历重复了, 由于只记住了最后一次节点的位置, 所以中间这一段会被删掉, 完成要求
@@ -38,7 +38,7 @@ public class Solution1171 {
         HashMap<Integer, ListNode> map = new HashMap<>();
         int sum = 0;
         // map -> 节点和-节点
-        // 当有两个 sum 相等时, 那么这一端链表之和为 0 , 只需要记住最后一个, 中间的一段会被删除
+        // 当有两个 sum 相等时, 那么这一端链表之 0 , 只需要记住最后一个, 中间的一段会被删除
         for (ListNode temp = dummyHead; temp != null; temp = temp.next) {
             sum += temp.val;
             map.put(sum, temp);

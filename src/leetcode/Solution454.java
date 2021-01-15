@@ -15,7 +15,7 @@ public class Solution454 {
 
     /**
      * A B 分为一组求所有可能之和装入 map, C D一组求所有可能之和;
-     * 如果 map 中包含 C D之和的相反数, 说明和为 0
+     * 如果 map 中包含 C D之和的相反数, 说明 0
      */
     public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
         Map<Integer, Integer> map = new HashMap<>();

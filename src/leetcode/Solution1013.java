@@ -17,8 +17,8 @@ public class Solution1013 {
     /**
      * 1.计算所有元素的和, 和不是 3 的倍数, 肯定不行
      * 2.每一部分之和 temp = sum / 3;
-     * 3.遍历数组, 依次相加数组元素, 查找第一部分(和为 temp)；
-     * 5.查找第二部分(和为 temp*2), 此时下标应该不是最后一个元素. 那么就 true
+     * 3.遍历数组, 依次相加数组元素, 查找第一部分( temp)；
+     * 5.查找第二部分( temp*2), 此时下标应该不是最后一个元素. 那么就 true
      */
     public boolean canThreePartsEqualSum(int[] A) {
         int sum = 0;

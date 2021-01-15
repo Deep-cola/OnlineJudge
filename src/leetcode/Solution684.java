@@ -42,11 +42,10 @@ public class Solution684 {
     public int[] findRedundantConnection(int[][] edges) {
         UnionFind unionFind = new UnionFind(edges.length + 1);
 
-        for (int i = 0; i < edges.length; i++) {
-            int[] point = edges[i];
+        for (int[] point : edges) {
             if (unionFind.find(point[0]) != unionFind.find(point[1])) {
                 unionFind.union(point[0], point[1]);
-            }else {
+            } else {
                 // 当两条边进来根节点就相等说明存在环
                 return point;
             }
