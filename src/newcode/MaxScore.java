@@ -1,5 +1,8 @@
 package newcode;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 /**
  * @description: 最高分是多少
  * 老师想知道从某某同学当中，分数最高的是多少，现在请你编程模拟老师的询问。当然，老师有时候需要更新某位同学的成绩.
@@ -36,7 +39,37 @@ package newcode;
 public class MaxScore {
 
 
+    public static int getMax(int[] A, int start, int end) {
+        int result = A[start];
+        for (int i = Math.min(start, end); i <= Math.max(start, end); i++) {
+            if (A[i] > result) {
+                result = A[i];
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            int m = scanner.nextInt();
+            int n = scanner.nextInt();
+            int[] scores = new int[m + 1];
+            for (int i = 1; i <= m; i++) {
+                scores[i] = scanner.nextInt();
+            }
+            for (int i = 0; i < n; i++) {
+                char ch = scanner.next().charAt(0);
+                int A = scanner.nextInt();
+                int B = scanner.nextInt();
+                if (ch == 'Q') {
+                    // ID从A到B（包括A,B）的学生当中，成绩最高的是多少
+                    System.out.println(getMax(scores, A, B));
+                }else {
+                    // 把ID为A的学生的成绩更改为B。
+                    scores[A] = B;
+                }
+            }
+        }
     }
 }
