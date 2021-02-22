@@ -30,7 +30,7 @@ public class Solution125 {
                 left++;
             }
             while (left <= right && !Character.isLetterOrDigit(s.charAt(right))) {
-                right++;
+                right--;
             }
             if (s.charAt(left++) != s.charAt(right--)) {
                 return false;
