@@ -21,6 +21,9 @@ package leetcode;
  */
 public class Solution59 {
 
+    /**
+     * 按层模拟
+     */
     public int[][] generateMatrix(int n) {
         int num = 1;
         int[][] matrix = new int[n][n];
