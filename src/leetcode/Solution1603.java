@@ -36,6 +36,9 @@ package leetcode;
  */
 public class Solution1603 {
 
+    /**
+     * 模拟
+     */
     /*class ParkingSystem {
         private int big;
         private int medium;
