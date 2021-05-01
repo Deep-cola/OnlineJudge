@@ -32,7 +32,7 @@ public class Solution137 {
     /**
      * 哈希表
      */
-    public int singleNumber(int[] nums) {
+    /*public int singleNumber(int[] nums) {
         Map<Integer, Integer> freq = new HashMap<Integer, Integer>();
         for (int num : nums) {
             freq.put(num, freq.getOrDefault(num, 0) + 1);
@@ -43,6 +43,23 @@ public class Solution137 {
             if (occ == 1) {
                 ans = num;
                 break;
+            }
+        }
+        return ans;
+    }*/
+
+    /**
+     * 依次确定每一个二进制位
+     */
+    public int singleNumber(int[] nums) {
+        int ans = 0;
+        for (int i = 0; i < 32; ++i) {
+            int total = 0;
+            for (int num: nums) {
+                total += ((num >> i) & 1);
+            }
+            if (total % 3 != 0) {
+                ans |= (1 << i);
             }
         }
         return ans;
